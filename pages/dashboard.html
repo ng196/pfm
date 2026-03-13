@@ -789,6 +789,31 @@
             font-weight: 700;
             color: var(--primary-color);
         }
+
+        .charts-grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .chart-canvas-wrapper-small {
+            position: relative;
+            height: 250px;
+            margin-bottom: 16px;
+        }
+
+        .chart-canvas-wrapper-bar {
+            position: relative;
+            height: 280px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 1024px) {
+            .charts-grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -865,6 +890,48 @@
                             <span class="stat-label">Total Spent</span>
                             <span class="stat-amount">₹2,450</span>
                         </div>
+                    </div>
+                </div>
+
+                <!-- CHARTS GRID -->
+                <div class="charts-grid-2col">
+                    <!-- CATEGORY BREAKDOWN CHART -->
+                    <div class="chart-card-full">
+                        <div class="chart-header-full">
+                            <div>
+                                <h3>Spending by Category</h3>
+                                <p class="chart-subtitle-text">Where your money goes</p>
+                            </div>
+                        </div>
+                        <div class="chart-canvas-wrapper-small">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- ACCOUNT DISTRIBUTION CHART -->
+                    <div class="chart-card-full">
+                        <div class="chart-header-full">
+                            <div>
+                                <h3>Account Distribution</h3>
+                                <p class="chart-subtitle-text">Assets allocation</p>
+                            </div>
+                        </div>
+                        <div class="chart-canvas-wrapper-small">
+                            <canvas id="accountChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INCOME vs EXPENSES CHART -->
+                <div class="chart-card-full">
+                    <div class="chart-header-full">
+                        <div>
+                            <h3>Income vs Expenses</h3>
+                            <p class="chart-subtitle-text">Monthly comparison</p>
+                        </div>
+                    </div>
+                    <div class="chart-canvas-wrapper-bar">
+                        <canvas id="incomeExpenseChart"></canvas>
                     </div>
                 </div>
 
@@ -1404,9 +1471,196 @@
             }
         }
 
+        // Initialize Category Chart (Pie)
+        function initCategoryChart() {
+            const ctx = document.getElementById('categoryChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Food & Dining', 'Transportation', 'Entertainment', 'Utilities', 'Shopping', 'Other'],
+                        datasets: [{
+                            data: [735, 490, 367, 343, 294, 221],
+                            backgroundColor: [
+                                '#3B82F6',
+                                '#EF4444',
+                                '#FBBF24',
+                                '#A78BFA',
+                                '#14B8A6',
+                                '#C084FC'
+                            ],
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: { size: 12, weight: 600 },
+                                    color: '#1F2937',
+                                    padding: 15
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                                padding: 12,
+                                bodyFont: { size: 12 },
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) label += ': ';
+                                        label += '₹' + context.parsed + ' (' + Math.round(context.parsed / 2450 * 100) + '%)';
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize Account Distribution Chart (Donut)
+        function initAccountChart() {
+            const ctx = document.getElementById('accountChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Wallet', 'Savings Account', 'Investment'],
+                        datasets: [{
+                            data: [45000, 75000, 120000],
+                            backgroundColor: [
+                                '#10B981',
+                                '#3B82F6',
+                                '#F59E0B'
+                            ],
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: { size: 12, weight: 600 },
+                                    color: '#1F2937',
+                                    padding: 15
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                                padding: 12,
+                                bodyFont: { size: 12 },
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) label += ': ';
+                                        label += '₹' + context.parsed.toLocaleString('en-IN');
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize Income vs Expenses Chart (Bar)
+        function initIncomeExpenseChart() {
+            const ctx = document.getElementById('incomeExpenseChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [
+                            {
+                                label: 'Income',
+                                data: [75000, 50000, 75000, 60000],
+                                backgroundColor: '#10B981',
+                                borderRadius: 6,
+                                borderSkipped: false
+                            },
+                            {
+                                label: 'Expenses',
+                                data: [12500, 8900, 15600, 10350],
+                                backgroundColor: '#F87171',
+                                borderRadius: 6,
+                                borderSkipped: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    font: { size: 13, weight: 600 },
+                                    color: '#1F2937',
+                                    usePointStyle: false,
+                                    padding: 20
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                                padding: 12,
+                                titleFont: { size: 13, weight: 600 },
+                                bodyFont: { size: 12 },
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': ₹' + context.parsed.y.toLocaleString('en-IN');
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return '₹' + (value / 1000) + 'K';
+                                    },
+                                    font: { size: 12 },
+                                    color: '#6B7280'
+                                },
+                                grid: {
+                                    color: 'rgba(107, 114, 128, 0.1)',
+                                    drawBorder: false
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    font: { size: 12 },
+                                    color: '#6B7280'
+                                },
+                                grid: {
+                                    display: false,
+                                    drawBorder: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
         updateTime();
         setInterval(updateTime, 1000);
         initSpendingTrendChart();
+        initCategoryChart();
+        initAccountChart();
+        initIncomeExpenseChart();
     </script>
 </body>
 </html>
