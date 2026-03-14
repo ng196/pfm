@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 function formatInr(value) {
   const amount = Number(value || 0);
   return new Intl.NumberFormat("en-IN", {
@@ -17,9 +19,28 @@ function categorize(txn) {
 }
 
 export default function BudgetTab({ data }) {
-  const debitTxns = (data.transactions || []).filter((txn) => txn.txn_type === "DEBIT");
+  const [refresh, setRefresh] = useState(0);
+
+  useEffect(() => {
+    const handleStorageChange = () => setRefresh((prev) => prev + 1);
+    window.addEventListener("fw-data-changed", handleStorageChange);
+    return () => window.removeEventListener("fw-data-changed", handleStorageChange);
+  }, []);
+
+  let fw_txns = [];
+  let fw_budget = {};
+  try {
+    fw_txns = JSON.parse(localStorage.getItem("fw_transactions") || "[]");
+    fw_budget = JSON.parse(localStorage.getItem("fw_budget") || "{}");
+  } catch (e) { }
+
+  const mergedTxns = [...fw_txns, ...(data?.transactions || [])];
+  const debitTxns = mergedTxns.filter((txn) => txn.txn_type === "DEBIT");
   const spent = debitTxns.reduce((sum, txn) => sum + Number(txn.amount || 0), 0);
-  const budget = Math.max(50000, Math.round(spent * 1.3));
+
+  // Use user-defined budget from AI, fallback to 1.3x spent
+  const aiTotalBudget = Object.values(fw_budget).reduce((sum, b) => sum + Number(b.amount || 0), 0);
+  const budget = aiTotalBudget > 0 ? aiTotalBudget : Math.max(50000, Math.round(spent * 1.3));
 
   const categorySpend = debitTxns.reduce((acc, txn) => {
     const category = categorize(txn);

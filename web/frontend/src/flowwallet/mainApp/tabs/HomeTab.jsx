@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 function formatInr(value) {
   const amount = Number(value || 0);
   return new Intl.NumberFormat("en-IN", {
@@ -35,12 +37,28 @@ function computeNetWorth(accounts) {
 }
 
 export default function HomeTab({ data }) {
+  const [refresh, setRefresh] = useState(0);
+
+  useEffect(() => {
+    const handleStorageChange = () => setRefresh((prev) => prev + 1);
+    window.addEventListener("fw-data-changed", handleStorageChange);
+    return () => window.removeEventListener("fw-data-changed", handleStorageChange);
+  }, []);
+
+  let fw_txns = [];
+  try {
+    fw_txns = JSON.parse(localStorage.getItem("fw_transactions") || "[]");
+  } catch (e) { }
+
   const accounts = data.accounts || [];
-  const txns = data.transactions || [];
+  const txns = [...fw_txns, ...(data.transactions || [])].sort(
+    (a, b) => new Date(b.txn_timestamp || b.value_date || b.createdAt || 0) - new Date(a.txn_timestamp || a.value_date || a.createdAt || 0)
+  );
+
   const insights = data.insights || {};
   const netWorth = computeNetWorth(accounts);
-  const income = Number(insights?.last30Days?.credit || 0);
-  const expense = Number(insights?.last30Days?.debit || 0);
+  const income = Number(insights?.last30Days?.credit || 0) + fw_txns.filter(t => t.txn_type === "CREDIT").reduce((sum, t) => sum + (Number(t.amount) || 0), 0);
+  const expense = Number(insights?.last30Days?.debit || 0) + fw_txns.filter(t => t.txn_type === "DEBIT").reduce((sum, t) => sum + (Number(t.amount) || 0), 0);
   const recentTxns = txns.slice(0, 5);
 
   return (

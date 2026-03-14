@@ -4,8 +4,8 @@ import Navbar from "../components/Navbar";
 import ChartWrapper from "../components/ChartWrapper";
 import QuickActions from "../components/QuickActions";
 import AccountBalance from "./AccountBalance";
-import Expenses from "./expenses";
-import Goals from "./goals";
+import Expenses from "./Expenses";
+import Goals from "./Goals";
 import ManualEntry from "./ManualEntry";
 import Transactions from "./Transactions";
 

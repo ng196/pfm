@@ -55,12 +55,10 @@ Financial snapshot:
 - Accounts: ${accounts.length}
 - Recent Transactions: ${transactions.slice(0, 5).map(t => `${t.merchant_name || t.narration}: ₹${t.amount} (${t.txn_type})`).join(", ")}
 
-When the user asks you to DO something (add transaction, create goal, set budget, etc.), respond with a JSON action block.
+When the user asks you to DO something (add transaction, create goal, set budget, etc.), you MUST respond with a special action key on its own line.
 
 Action format:
-\`\`\`action
-{"action": "add_transaction", "data": {"type": "expense", "amount": 500, "category": "food", "description": "Lunch", "date": "${new Date().toISOString().split("T")[0]}"}}
-\`\`\`
+$$FINWISE_ACTION$$:{"action": "add_transaction", "data": {"type": "expense", "amount": 500, "category": "food", "description": "Lunch", "date": "2026-03-14"}}
 
 Available actions:
 - add_transaction: {type, amount, category, description, date, paymentMethod}
@@ -95,9 +93,12 @@ Use INR (₹) for all amounts. Be concise and helpful.`;
         executeAction(action);
     }
 
-    const cleanedMessage = cleanResponse(content);
+    let cleanedMessage = cleanResponse(content);
+    if (!cleanedMessage && actions.length > 0) {
+        cleanedMessage = "Action executed successfully.";
+    }
 
-    return { message: cleanedMessage, actions, raw: content };
+    return { message: cleanedMessage || "No response received.", actions, raw: content };
 }
 
 /**
@@ -145,17 +146,18 @@ function executeAction(actionObj) {
 }
 
 /**
- * Parse ```action blocks from AI response
+ * Parse special action keys from AI response
  */
 function parseActions(content) {
     const actions = [];
-    const regex = /```action\s*\n?([\s\S]*?)```/g;
+    // Match $$FINWISE_ACTION$$:{...}
+    const regex = /\$\$FINWISE_ACTION\$\$:({[^\n]*})/g;
     let match;
     while ((match = regex.exec(content)) !== null) {
         try {
             actions.push(JSON.parse(match[1].trim()));
-        } catch {
-            // Skip unparseable action blocks
+        } catch (e) {
+            console.warn("Failed to parse action JSON:", match[1]);
         }
     }
     return actions;
@@ -165,7 +167,7 @@ function parseActions(content) {
  * Remove action blocks from display text
  */
 function cleanResponse(content) {
-    return content.replace(/```action\s*\n?[\s\S]*?```/g, "").trim();
+    return content.replace(/\$\$FINWISE_ACTION\$\$:({[^\n]*})/g, "").trim();
 }
 
 /**

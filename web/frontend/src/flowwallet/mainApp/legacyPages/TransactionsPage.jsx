@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 function formatInr(value) {
   const amount = Number(value || 0);
   const sign = amount < 0 ? "-" : "+";
@@ -81,9 +83,25 @@ function deriveRecentTransactions(transactions = []) {
 }
 
 export default function TransactionsPage({ data }) {
+  const [refresh, setRefresh] = useState(0);
+
+  useEffect(() => {
+    const handleStorageChange = () => setRefresh((prev) => prev + 1);
+    window.addEventListener("fw-data-changed", handleStorageChange);
+    return () => window.removeEventListener("fw-data-changed", handleStorageChange);
+  }, []);
+
   const userName = data?.user?.full_name || "User";
   const accounts = data?.accounts || [];
-  const txns = data?.transactions || [];
+
+  let fw_txns = [];
+  try {
+    fw_txns = JSON.parse(localStorage.getItem("fw_transactions") || "[]");
+  } catch (e) { }
+
+  const txns = [...fw_txns, ...(data?.transactions || [])].sort(
+    (a, b) => new Date(b.txn_timestamp || b.value_date || b.createdAt || 0) - new Date(a.txn_timestamp || a.value_date || a.createdAt || 0)
+  );
 
   const balance = deriveAccountBalance(accounts);
   const recent = deriveRecentTransactions(txns);
@@ -108,9 +126,8 @@ export default function TransactionsPage({ data }) {
             recent.map((txn) => (
               <article key={txn.id} className="flex items-center gap-3 rounded-xl bg-white p-4 ring-1 ring-slate-200">
                 <div
-                  className={`grid h-11 w-11 place-items-center rounded-lg text-xl ${
-                    txn.iconTone === "create" ? "bg-sky-100 text-sky-700" : "bg-emerald-100 text-emerald-700"
-                  }`}
+                  className={`grid h-11 w-11 place-items-center rounded-lg text-xl ${txn.iconTone === "create" ? "bg-sky-100 text-sky-700" : "bg-emerald-100 text-emerald-700"
+                    }`}
                 >
                   {txn.icon}
                 </div>
@@ -133,11 +150,10 @@ export default function TransactionsPage({ data }) {
           {cards.map((card) => (
             <article
               key={card.id}
-              className={`rounded-2xl p-5 text-white shadow-md ${
-                card.color === "green"
+              className={`rounded-2xl p-5 text-white shadow-md ${card.color === "green"
                   ? "bg-gradient-to-br from-emerald-500 to-emerald-700"
                   : "bg-gradient-to-br from-rose-500 to-rose-700"
-              }`}
+                }`}
             >
               <div className="mb-3 flex items-center justify-between">
                 <span className="text-sm font-semibold">{card.type}</span>
