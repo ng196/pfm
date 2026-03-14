@@ -92,11 +92,12 @@
 
         .form-container {
             width: 100%;
-            max-width: 420px;
+            max-width: 500px;
             background-color: var(--white);
             border-radius: 0.75rem;
             border: 1px solid var(--border-color);
             padding: 2rem 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .form-header {
@@ -359,6 +360,87 @@
             font-weight: 500;
         }
 
+        /* GOALS SECTION */
+        .goals-banner {
+            background-color: #FEF3C7;
+            border: 1px solid #FCD34D;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .goals-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .goals-text {
+            font-size: 0.85rem;
+            color: #92400E;
+            font-weight: 500;
+        }
+
+        .goals-input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .goals-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: var(--bg-light);
+            border-radius: 0.5rem;
+        }
+
+        .goal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid var(--border-color);
+            font-size: 0.875rem;
+        }
+
+        .goal-item button {
+            background-color: #FEE2E2;
+            color: #DC2626;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .goal-item button:hover {
+            background-color: #FECACA;
+        }
+
+        .add-goal-btn {
+            width: 100%;
+            padding: 0.625rem;
+            background-color: #FCD34D;
+            color: #92400E;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .add-goal-btn:hover {
+            background-color: #FBBF24;
+        }
+
         @media (min-width: 768px) {
             .form-container {
                 padding: 2.5rem 2rem;
@@ -533,15 +615,47 @@
                             <div class="divider-line"></div>
                         </div>
 
-                        <!-- Skip Option -->
+                        <!-- Skip Bank Option -->
                         <div class="form-group">
                             <button type="button" class="form-button btn-skip" onclick="skipBankLink()">
                                 <i class="fas fa-arrow-right" style="margin-right: 0.5rem;"></i> Skip for Now
                             </button>
                         </div>
 
+                        <!-- GOALS SECTION -->
+                        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                            <div class="goals-banner">
+                                <div class="goals-icon">🎯</div>
+                                <div class="goals-text">Add Your Financial Goals</div>
+                                <div style="font-size: 0.75rem; color: #92400E; margin-top: 0.25rem;">Plan for your future</div>
+                            </div>
+
+                            <div class="goals-input-group">
+                                <label class="form-label" for="goalInput">Add a Goal</label>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <input 
+                                        type="text" 
+                                        id="goalInput" 
+                                        class="form-input" 
+                                        placeholder="e.g., Save for car, Emergency fund, Vacation"
+                                        style="flex: 1;"
+                                    >
+                                    <button type="button" class="add-goal-btn" onclick="addGoal()">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Goals List -->
+                            <div id="goalsList" class="goals-list">
+                                <div style="text-align: center; color: var(--text-light); font-size: 0.875rem; padding: 1rem;">
+                                    No goals added yet
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Verification Code (Optional) -->
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 1.5rem;">
                             <label class="form-label" for="verificationCode">Email Verification Code (Optional)</label>
                             <div style="display: flex; gap: 0.5rem;">
                                 <input 
@@ -558,7 +672,7 @@
                         </div>
 
                         <!-- Create Account Button -->
-                        <button type="submit" class="form-button" style="width: 100%; margin-bottom: 1rem;">
+                        <button type="submit" class="form-button" style="width: 100%; margin-bottom: 1rem; margin-top: 1.5rem;">
                             Create Account
                         </button>
 
@@ -599,6 +713,7 @@
 
     <script>
         let signupData = {};
+        let userGoals = [];
 
         function goToStep2() {
             const fullName = document.getElementById('fullName').value;
@@ -660,6 +775,44 @@
             document.querySelector('.login-link').style.display = 'block';
         }
 
+        function addGoal() {
+            const goalInput = document.getElementById('goalInput');
+            const goal = goalInput.value.trim();
+
+            if (!goal) {
+                alert('Please enter a goal');
+                return;
+            }
+
+            // Add to goals list
+            userGoals.push(goal);
+            goalInput.value = '';
+
+            // Render goals list
+            renderGoals();
+        }
+
+        function removeGoal(index) {
+            userGoals.splice(index, 1);
+            renderGoals();
+        }
+
+        function renderGoals() {
+            const goalsList = document.getElementById('goalsList');
+            
+            if (userGoals.length === 0) {
+                goalsList.innerHTML = '<div style="text-align: center; color: var(--text-light); font-size: 0.875rem; padding: 1rem;">No goals added yet</div>';
+                return;
+            }
+
+            goalsList.innerHTML = userGoals.map((goal, index) => `
+                <div class="goal-item">
+                    <span>✓ ${goal}</span>
+                    <button type="button" onclick="removeGoal(${index})">Remove</button>
+                </div>
+            `).join('');
+        }
+
         function handleBankLink() {
             const bankName = document.getElementById('bankName').value;
             const errorMsg = document.getElementById('errorMessage');
@@ -700,11 +853,12 @@
             successMsg.textContent = '✓ Account created successfully! Redirecting...';
             successMsg.classList.add('show');
 
-            // Store user data with bank info
+            // Store user data with bank info and goals
             const userData = {
                 ...signupData,
                 verificationCode: verificationCode || 'skipped',
                 bankLinked: !!signupData.bankName,
+                goals: userGoals,
                 loggedIn: true
             };
 
@@ -726,6 +880,19 @@
                 goToStep2();
             }, 1500);
         }
+
+        // Allow Enter key to add goals
+        document.addEventListener('DOMContentLoaded', function() {
+            const goalInput = document.getElementById('goalInput');
+            if (goalInput) {
+                goalInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addGoal();
+                    }
+                });
+            }
+        });
     </script>
 
 </body>

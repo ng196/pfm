@@ -14,7 +14,8 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
         .header { margin-bottom: 30px; }
         .header h1 { font-size: 32px; font-weight: 700; color: #1F2937; }
-        .balance-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 30px; display: flex; align-items: center; justify-content: space-around; }
+        .balance-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 30px; display: flex; align-items: center; justify-content: space-around; transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1); transform-style: preserve-3d; }
+        .balance-card:hover { transform: translateY(-10px) rotateX(4deg) rotateY(-4deg); box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15); }
         .balance-item { text-align: center; }
         .label { display: block; font-size: 12px; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
         .amount { display: block; font-size: 28px; font-weight: 700; color: #10B981; }
@@ -23,13 +24,15 @@
         .success-container { background: #ECFDF5; border: 1px solid #86EFAC; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 30px; }
         .success-icon { font-size: 48px; color: #059669; margin-bottom: 12px; }
         .success-text { color: #059669; font-weight: 600; }
-        .bank-details { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 30px; }
+        .bank-details { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 30px; transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1); transform-style: preserve-3d; }
+        .bank-details:hover { transform: translateY(-8px) rotateX(3deg) rotateY(-3deg); box-shadow: 0 15px 30px rgba(16, 185, 129, 0.15); }
         .bank-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 18px; font-weight: 600; }
         .bank-amount { font-size: 28px; font-weight: 700; color: #10B981; }
         .sponsored-section { margin: 30px 0; }
         .sponsored-section h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: #1F2937; }
         .sponsor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; }
-        .sponsor-item { background: white; border-radius: 8px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sponsor-item { background: white; border-radius: 8px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1); transform-style: preserve-3d; }
+        .sponsor-item:hover { transform: translateY(-6px) rotateX(2deg) rotateY(-2deg); box-shadow: 0 12px 24px rgba(16, 185, 129, 0.12); }
         .sponsor-logo { background: #f0f0f0; border-radius: 6px; padding: 12px; margin-bottom: 12px; font-weight: 600; color: #1F2937; font-size: 14px; }
         .sponsor-name { display: block; font-size: 13px; color: #6B7280; margin-top: 8px; }
         .featured-card { background: #FFFBEB; border-left: 4px solid #FCD34D; border-radius: 8px; padding: 20px; display: flex; align-items: center; gap: 16px; margin-top: 20px; }

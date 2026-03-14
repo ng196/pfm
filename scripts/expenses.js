@@ -15,7 +15,7 @@ const periodData = {
                 {
                     label: 'Food & Dining',
                     data: [250, 180, 305],
-                    backgroundColor: '#3b82f6'
+                    backgroundColor: '#10B981'
                 },
                 {
                     label: 'Transportation',
@@ -57,7 +57,7 @@ const periodData = {
                 {
                     label: 'Food & Dining',
                     data: [450, 380, 520, 410, 480, 350, 300],
-                    backgroundColor: '#3b82f6'
+                    backgroundColor: '#10B981'
                 },
                 {
                     label: 'Transportation',
@@ -99,7 +99,7 @@ const periodData = {
                 {
                     label: 'Food & Dining',
                     data: [1800, 1750, 1900, 1650],
-                    backgroundColor: '#3b82f6'
+                    backgroundColor: '#10B981'
                 },
                 {
                     label: 'Transportation',
@@ -141,7 +141,7 @@ const periodData = {
                 {
                     label: 'Food & Dining',
                     data: [5400, 5200, 5600, 5300, 5500, 5100, 5700, 5400, 5200, 5600, 5400, 5500],
-                    backgroundColor: '#3b82f6'
+                    backgroundColor: '#10B981'
                 },
                 {
                     label: 'Transportation',

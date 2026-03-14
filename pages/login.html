@@ -437,36 +437,16 @@
         function handleLogin(event) {
             event.preventDefault();
             
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorMsg = document.getElementById('errorMessage');
+            // Temporarily allow login without validation
             const successMsg = document.getElementById('successMessage');
 
-            // Reset messages
-            errorMsg.classList.remove('show');
-            successMsg.classList.remove('show');
-
-            // Basic validation
-            if (!email || !password) {
-                errorMsg.textContent = 'Please fill in all fields';
-                errorMsg.classList.add('show');
-                return;
-            }
-
-            if (password.length < 6) {
-                errorMsg.textContent = 'Password must be at least 6 characters';
-                errorMsg.classList.add('show');
-                return;
-            }
-
-            // Simulate login (dummy)
             successMsg.textContent = '✓ Login successful! Redirecting...';
             successMsg.classList.add('show');
 
             // Store dummy user data in localStorage
             localStorage.setItem('userData', JSON.stringify({
-                email: email,
-                name: email.split('@')[0],
+                email: 'user@example.com',
+                name: 'Demo User',
                 loggedIn: true
             }));
 
