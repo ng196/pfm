@@ -1,0 +1,23 @@
+{
+  "name": "unified-backend",
+  "version": "1.0.0",
+  "description": "Unified backend server combining Account Aggregator and Chatbot services",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "db:init": "node data/init.js"
+  },
+  "keywords": ["account-aggregator", "chatbot", "express", "api"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "uuid": "^13.0.0",
+    "openai": "^6.27.0",
+    "chalk": "^5.6.2",
+    "pg": "^8.11.3"
+  }
+}
