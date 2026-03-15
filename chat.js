@@ -2,8 +2,15 @@ import OpenAI from 'openai';
 import chalk from 'chalk';
 import * as readline from 'readline';
 
+const ZAI_API_KEY = process.env.ZAI_API_KEY || process.env['z.ai_api_key'] || process.env.Z_AI_API_KEY;
+
+if (!ZAI_API_KEY) {
+  console.error(chalk.red('Missing API key. Set ZAI_API_KEY (or z.ai_api_key / Z_AI_API_KEY) in environment variables.'));
+  process.exit(1);
+}
+
 const openai = new OpenAI({
-  apiKey: process.env.z.ai_api_key || '86f90fe16ae34556b84f61f69bfc772c.bDA0Er5ScuCqbpEq',
+  apiKey: ZAI_API_KEY,
   baseURL: 'https://api.z.ai/api/coding/paas/v4'
 });
 

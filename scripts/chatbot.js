@@ -1,7 +1,7 @@
 // Chatbot Widget JavaScript
 class ChatbotWidget {
     constructor() {
-        this.apiKey = "86f90fe16ae34556b84f61f69bfc772c.bDA0Er5ScuCqbpEq";
+        this.apiKey = window.FINBOT_API_KEY || "";
         this.baseURL = 'https://api.z.ai/api/coding/paas/v4';
         this.messages = [];
         this.isOpen = false;
@@ -167,6 +167,10 @@ class ChatbotWidget {
         this.sendBtn.disabled = true;
 
         try {
+            if (!this.apiKey) {
+                throw new Error('Missing FINBOT_API_KEY runtime configuration');
+            }
+
             this.messages.push({
                 role: 'user',
                 content: userMessage
