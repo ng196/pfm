@@ -15,6 +15,11 @@ const app = express();
 const PORT = Number(process.env.PORT || 5000);
 const MAX_DEPOSIT_ACCOUNTS = 3;
 const MAX_CREDIT_CARD_ACCOUNTS = 4;
+const DEFAULT_AI_MODEL = process.env.ZAI_MODEL || 'glm-4.5-air';
+const ZAI_CHAT_COMPLETIONS_URLS = [
+	`${process.env.ZAI_BASE_URL || 'https://api.z.ai/api/coding/paas/v4'}/chat/completions`,
+	'https://api.z.ai/api/paas/v4/chat/completions'
+];
 
 app.use(
 	cors({
@@ -39,6 +44,64 @@ const memoryUsers = DEMO_USER_PROFILES.map((profile, idx) => ({
 	updated_at: new Date().toISOString()
 }));
 const memoryContexts = new Map();
+
+function getZaiApiKey() {
+	return (process.env.ZAI_API_KEY || process.env['z.ai_api_key'] || process.env.Z_AI_API_KEY || '').trim();
+}
+
+async function callZaiChatCompletions({ messages, model, temperature, maxTokens }) {
+	const apiKey = getZaiApiKey();
+	if (!apiKey) {
+		const err = new Error('Missing z.ai API key in backend env');
+		err.statusCode = 500;
+		throw err;
+	}
+
+	let lastError = null;
+	for (const endpoint of ZAI_CHAT_COMPLETIONS_URLS) {
+		const response = await fetch(endpoint, {
+			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${apiKey}`,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				model: model || DEFAULT_AI_MODEL,
+				messages,
+				temperature: Number.isFinite(Number(temperature)) ? Number(temperature) : 0.7,
+				max_tokens: Number.isFinite(Number(maxTokens)) ? Number(maxTokens) : 1024,
+				stream: false
+			})
+		});
+
+		if (response.ok) {
+			return response.json();
+		}
+
+		let details = await response.text();
+		try {
+			details = await response.json();
+		} catch (_err) {
+			// Keep text details if JSON parsing fails.
+		}
+
+		lastError = {
+			statusCode: response.status,
+			details,
+			endpoint
+		};
+
+		// Retry on endpoint-not-found using next base path; otherwise surface immediately.
+		if (response.status !== 404) {
+			break;
+		}
+	}
+
+	const err = new Error('z.ai request failed');
+	err.statusCode = lastError?.statusCode || 502;
+	err.details = lastError || null;
+	throw err;
+}
 
 function toBoolHeader(value) {
 	if (typeof value !== 'string') {
@@ -248,6 +311,72 @@ async function resolveDashboardContext({ uid, mobile, email, name, pan, fiTypes 
 
 app.get('/health', (_req, res) => {
 	res.json({ ok: true, service: 'backend', timestamp: new Date().toISOString() });
+});
+
+app.get('/api/health', async (_req, res) => {
+	if (!getZaiApiKey()) {
+		res.json({ ok: true, online: false, error: 'Missing z.ai API key in backend env' });
+		return;
+	}
+
+	try {
+		const data = await callZaiChatCompletions({
+			messages: [{ role: 'user', content: 'ping' }],
+			temperature: 0,
+			maxTokens: 8
+		});
+		res.json({ ok: true, online: true, model: data.model || DEFAULT_AI_MODEL });
+	} catch (err) {
+		res.json({ ok: true, online: false, error: err.message || 'Upstream health check failed' });
+	}
+});
+
+app.post('/api/chat', async (req, res) => {
+	try {
+		const message = typeof req.body?.message === 'string' ? req.body.message.trim() : '';
+		const messages = Array.isArray(req.body?.messages) ? req.body.messages : null;
+		const systemPrompt = typeof req.body?.systemPrompt === 'string' ? req.body.systemPrompt.trim() : '';
+
+		let outboundMessages = [];
+		if (messages && messages.length > 0) {
+			outboundMessages = messages;
+		} else {
+			if (!message) {
+				res.status(400).json({ ok: false, error: 'Provide either non-empty messages[] or message' });
+				return;
+			}
+
+			if (systemPrompt) {
+				outboundMessages.push({ role: 'system', content: systemPrompt });
+			}
+			outboundMessages.push({ role: 'user', content: message });
+		}
+
+		const data = await callZaiChatCompletions({
+			messages: outboundMessages,
+			model: req.body?.model,
+			temperature: req.body?.temperature,
+			maxTokens: req.body?.max_tokens
+		});
+
+		const choice = data?.choices?.[0] || {};
+		const content = choice?.message?.content || '';
+
+		res.json({
+			ok: true,
+			response: content,
+			choices: data?.choices || [],
+			model: data?.model || DEFAULT_AI_MODEL,
+			timestamp: new Date().toISOString()
+		});
+	} catch (err) {
+		const statusCode = Number(err.statusCode) || 502;
+		res.status(statusCode).json({
+			ok: false,
+			error: err.message || 'AI request failed',
+			upstreamDetails: err.details || null
+		});
+	}
 });
 
 app.get('/users', async (_req, res, next) => {

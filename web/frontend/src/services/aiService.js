@@ -1,11 +1,11 @@
 /**
  * AI Service - FinWise AI integration for React components
- * Connects to z.ai proxy at localhost:8787
+ * Connects to backend AI endpoints at localhost:5000
  */
 
-const AI_PROXY_URL = import.meta.env.VITE_AI_PROXY_URL || "http://127.0.0.1:8787";
-const AI_CHAT_ENDPOINT = `${AI_PROXY_URL}/api/chat`;
-const HEALTH_ENDPOINT = `${AI_PROXY_URL}/api/health`;
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://127.0.0.1:5000";
+const AI_CHAT_ENDPOINT = `${API_BASE_URL}/api/chat`;
+const HEALTH_ENDPOINT = `${API_BASE_URL}/api/health`;
 
 let sessionId = "finwise-" + Date.now();
 
@@ -81,7 +81,14 @@ Use INR (₹) for all amounts. Be concise and helpful.`;
     });
 
     if (!response.ok) {
-        throw new Error(`AI API Error: ${response.status}`);
+        let detail = "";
+        try {
+            const errBody = await response.json();
+            detail = errBody?.error || errBody?.upstreamDetails?.details?.error?.message || JSON.stringify(errBody);
+        } catch {
+            // Ignore parse errors and fall back to status-only message.
+        }
+        throw new Error(`AI API Error: ${response.status}${detail ? ` - ${detail}` : ""}`);
     }
 
     const result = await response.json();

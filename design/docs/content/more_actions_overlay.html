@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlowWallet - More Actions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-container": "#14b8a6",
+              "on-primary-fixed": "#00201c",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed-variant": "#004e5c",
+              "background": "#f7f9fb",
+              "secondary-fixed-dim": "#bec6e0",
+              "surface-container": "#eceef0",
+              "on-tertiary-container": "#00414d",
+              "inverse-surface": "#2d3133",
+              "on-secondary-fixed-variant": "#3f465c",
+              "on-secondary-container": "#5c647a",
+              "surface-container-high": "#e6e8ea",
+              "error": "#ba1a1a",
+              "surface-container-low": "#f2f4f6",
+              "on-secondary-fixed": "#131b2e",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#00423b",
+              "on-primary-fixed-variant": "#005048",
+              "on-primary": "#ffffff",
+              "surface-bright": "#f7f9fb",
+              "secondary": "#565e74",
+              "on-error-container": "#93000a",
+              "surface-tint": "#006b5f",
+              "surface-container-highest": "#e0e3e5",
+              "on-background": "#191c1e",
+              "tertiary-fixed": "#acedff",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#71f8e4",
+              "inverse-on-surface": "#eff1f3",
+              "secondary-container": "#dae2fd",
+              "tertiary-container": "#00b4d2",
+              "on-tertiary-fixed": "#001f26",
+              "primary": "#006b5f",
+              "on-surface-variant": "#3c4947",
+              "surface-variant": "#e0e3e5",
+              "tertiary": "#00687a",
+              "outline": "#6c7a77",
+              "primary-fixed-dim": "#4fdbc8",
+              "on-surface": "#191c1e",
+              "tertiary-fixed-dim": "#4cd7f6",
+              "surface-dim": "#d8dadc",
+              "inverse-primary": "#4fdbc8",
+              "outline-variant": "#bbcac6",
+              "surface": "#f7f9fb",
+              "on-error": "#ffffff",
+              "secondary-fixed": "#dae2fd"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-overlay {
+            background: rgba(247, 249, 251, 0.7);
+            backdrop-filter: blur(24px);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<!-- Mock Background Dashboard (Blurred) -->
+<div class="fixed inset-0 z-0 opacity-40 blur-sm pointer-events-none p-6">
+<div class="max-w-md mx-auto space-y-8">
+<div class="h-48 bg-on-secondary-fixed rounded-xl p-6 flex flex-col justify-between">
+<div class="h-4 w-24 bg-white/20 rounded"></div>
+<div class="h-12 w-48 bg-white/20 rounded"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="h-32 bg-surface-container-highest rounded-xl"></div>
+<div class="h-32 bg-surface-container-highest rounded-xl"></div>
+</div>
+<div class="space-y-4">
+<div class="h-16 bg-white rounded-xl shadow-sm"></div>
+<div class="h-16 bg-white rounded-xl shadow-sm"></div>
+<div class="h-16 bg-white rounded-xl shadow-sm"></div>
+</div>
+</div>
+</div>
+<!-- Main Overlay Shell -->
+<main class="fixed inset-0 z-50 glass-overlay flex flex-col">
+<!-- Top Navigation Bar (Shared Component Strategy) -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm">
+<div class="flex items-center justify-between px-6 h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="text-teal-600 dark:text-teal-400 hover:bg-teal-50/50 dark:hover:bg-teal-900/20 transition-colors active:scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h1 class="font-['Inter'] font-bold text-lg tracking-tight text-teal-600 dark:text-teal-400">More</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-slate-500 dark:text-slate-400 hover:bg-teal-50/50 dark:hover:bg-teal-900/20 transition-colors active:scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto no-scrollbar pt-20 pb-32 px-6">
+<div class="max-w-2xl mx-auto space-y-10">
+<!-- Profile Header (NavigationDrawer Context) -->
+<section class="flex items-center space-x-4 mb-8">
+<div class="relative">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container p-0.5">
+<img alt="User Profile" class="w-full h-full object-cover rounded-full" data-alt="Close-up portrait of a professional man in his 30s with a clean-cut look and a friendly, confident expression, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdWN7ra3-59S9QLJagw1kuvaZUZYuijtAg-hINFTNgxQrWIPdeiradeWiy5DZBRbogucvf9I_WcfAAXmIUvF8EUyu7SakDD3QB3mKtAI_twmhMtMKcSWtOJzypRzUj1Gz2DES2Gkocd6KY4UIXZe0jpRRwWR94LhOdko6OxAVsmb_xDlLYE4Q88tO_T7wi_jXyEXw_ZY0cuWCskkSftPVe3qS0H-tCEQxE8rSCJb6XFN2FgZQMiAMabdtDnoJ3nGYLzmLwbbf1HeM"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary-container text-white p-1 rounded-full text-[10px]">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div>
+<h2 class="text-xl font-black text-teal-600">Ethereal Member</h2>
+<p class="text-sm font-medium text-slate-500">Premium Tier • Level 4 Wealth Builder</p>
+</div>
+</section>
+<!-- 1. Core Actions (Icon Grid) -->
+<section>
+<h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6 opacity-70">Core Actions</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Manual Entry -->
+<div class="group flex flex-col items-center p-5 bg-surface-container-lowest rounded-3xl transition-all duration-300 hover:translate-y-[-4px] active:scale-95 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="w-14 h-14 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-teal-500 group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-2xl">edit_square</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">Manual Entry</span>
+</div>
+<!-- Export -->
+<div class="group flex flex-col items-center p-5 bg-surface-container-lowest rounded-3xl transition-all duration-300 hover:translate-y-[-4px] active:scale-95 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="w-14 h-14 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-teal-500 group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-2xl">file_export</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant text-center">Export Statements</span>
+</div>
+<!-- Categories -->
+<div class="group flex flex-col items-center p-5 bg-surface-container-lowest rounded-3xl transition-all duration-300 hover:translate-y-[-4px] active:scale-95 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="w-14 h-14 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-teal-500 group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-2xl">category</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">Categories</span>
+</div>
+<!-- Tax Planning -->
+<div class="group flex flex-col items-center p-5 bg-surface-container-lowest rounded-3xl transition-all duration-300 hover:translate-y-[-4px] active:scale-95 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<div class="w-14 h-14 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-teal-500 group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-2xl">account_balance</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant text-center">Tax Planning</span>
+</div>
+</div>
+</section>
+<!-- 2. Account Management (List) -->
+<section>
+<h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6 opacity-70">Account Management</h3>
+<div class="bg-surface-container-lowest rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<button class="w-full flex items-center justify-between p-6 hover:bg-surface-container-low transition-colors group active:scale-[0.99] duration-200">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-surface-container-high rounded-xl flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined text-xl">link</span>
+</div>
+<span class="text-sm font-semibold text-on-surface">Linked Accounts</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-2 py-1 bg-teal-100 text-teal-700 text-[10px] font-bold rounded-md uppercase tracking-wider">4 Linked</span>
+<span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</button>
+<button class="w-full flex items-center justify-between p-6 hover:bg-surface-container-low transition-colors group active:scale-[0.99] duration-200">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-surface-container-high rounded-xl flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined text-xl">lock_person</span>
+</div>
+<span class="text-sm font-semibold text-on-surface">Security &amp; PIN</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-6 hover:bg-surface-container-low transition-colors group active:scale-[0.99] duration-200">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-surface-container-high rounded-xl flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined text-xl">settings</span>
+</div>
+<span class="text-sm font-semibold text-on-surface">App Settings</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- 3. Support (List) -->
+<section>
+<h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6 opacity-70">Support</h3>
+<div class="bg-surface-container-lowest rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<button class="w-full flex items-center justify-between p-6 hover:bg-surface-container-low transition-colors group active:scale-[0.99] duration-200">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-surface-container-high rounded-xl flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined text-xl">help_center</span>
+</div>
+<span class="text-sm font-semibold text-on-surface">Help Center</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-6 hover:bg-surface-container-low transition-colors group active:scale-[0.99] duration-200">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-surface-container-high rounded-xl flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined text-xl">support_agent</span>
+</div>
+<span class="text-sm font-semibold text-on-surface">Contact Support</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Footer / Sign Out -->
+<section class="pt-4 pb-12">
+<button class="w-full py-4 text-center text-error font-bold uppercase tracking-widest text-xs hover:bg-error-container/20 rounded-2xl transition-colors active:scale-95 duration-200">
+                        Secure Sign Out
+                    </button>
+<p class="text-center text-[10px] text-slate-400 mt-6 tracking-widest uppercase">FlowWallet v2.4.0 • Built with Trust</p>
+</section>
+</div>
+</div>
+<!-- Navigation Shell (BottomNavBar Logic) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-t-[3rem] shadow-[0_-20px_40px_rgba(0,107,95,0.08)] z-50">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-teal-500 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Wealth</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-teal-500 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined text-2xl">query_stats</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Insights</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-teal-500 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">AI Assistant</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-teal-500 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined text-2xl">pie_chart</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Budget</span>
+</div>
+<!-- Active Tab Mapping to 'More' -->
+<div class="flex flex-col items-center justify-center bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-300 rounded-2xl px-4 py-2 active:scale-90 duration-300">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">more_horiz</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">More</span>
+</div>
+</nav>
+</main>
+</body></html>

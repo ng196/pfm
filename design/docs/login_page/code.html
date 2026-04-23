@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - FlowWallet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-high": "#e6e8ea",
+              "on-secondary-fixed": "#131b2e",
+              "tertiary-container": "#00b4d2",
+              "inverse-on-surface": "#eff1f3",
+              "tertiary-fixed-dim": "#4cd7f6",
+              "secondary": "#565e74",
+              "surface-container-lowest": "#ffffff",
+              "background": "#f7f9fb",
+              "primary": "#006b5f",
+              "outline": "#6c7a77",
+              "primary-fixed": "#71f8e4",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed": "#00201c",
+              "secondary-fixed": "#dae2fd",
+              "on-background": "#191c1e",
+              "on-error": "#ffffff",
+              "primary-container": "#14b8a6",
+              "on-tertiary-fixed-variant": "#004e5c",
+              "on-secondary-container": "#5c647a",
+              "secondary-fixed-dim": "#bec6e0",
+              "on-primary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#bbcac6",
+              "surface-dim": "#d8dadc",
+              "on-primary-container": "#00423b",
+              "surface-container-low": "#f2f4f6",
+              "on-primary-fixed-variant": "#005048",
+              "tertiary": "#00687a",
+              "on-surface-variant": "#3c4947",
+              "surface": "#f7f9fb",
+              "secondary-container": "#dae2fd",
+              "on-tertiary-fixed": "#001f26",
+              "surface-container-highest": "#e0e3e5",
+              "surface-container": "#eceef0",
+              "inverse-surface": "#2d3133",
+              "surface-bright": "#f7f9fb",
+              "on-surface": "#191c1e",
+              "primary-fixed-dim": "#4fdbc8",
+              "surface-variant": "#e0e3e5",
+              "error": "#ba1a1a",
+              "on-tertiary-container": "#00414d",
+              "on-secondary-fixed-variant": "#3f465c",
+              "tertiary-fixed": "#acedff",
+              "on-error-container": "#93000a",
+              "surface-tint": "#006b5f",
+              "inverse-primary": "#4fdbc8",
+              "error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f7f9fb;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen flex flex-col items-center justify-center p-6 sm:p-12">
+<!-- Back Button -->
+<div class="fixed top-8 left-8">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+<span class="font-semibold text-sm tracking-wide">BACK</span>
+</button>
+</div>
+<div class="w-full max-w-md space-y-8">
+<!-- Brand Header -->
+<div class="text-center space-y-2">
+<div class="flex justify-center mb-6">
+<div class="p-4 bg-primary/10 rounded-xl">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+</div>
+<h1 class="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">FlowWallet</h1>
+<p class="text-on-surface-variant font-medium">Experience the Ethereal Ledger</p>
+</div>
+<!-- Login Card -->
+<div class="bg-surface-container-lowest ring-1 ring-slate-200 rounded-lg p-8 shadow-[0_20px_50px_rgba(0,107,95,0.04)]">
+<div class="space-y-6">
+<!-- Input Section -->
+<div class="space-y-4">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-[0.15em] ml-1">Phone Number</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="text-on-surface-variant font-semibold">+91</span>
+</div>
+<input class="block w-full pl-14 pr-4 py-4 bg-surface-container-low border-none rounded-2xl focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all text-on-surface font-medium placeholder:text-outline-variant" placeholder="Enter 10 digit number" type="tel"/>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full py-4 bg-on-secondary-fixed text-surface-container-lowest rounded-full font-bold text-sm tracking-widest uppercase hover:opacity-90 transition-all shadow-xl shadow-on-secondary-fixed/10">
+                    Get OTP
+                </button>
+<div class="relative py-4">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-surface-container-high"></div>
+</div>
+<div class="relative flex justify-center text-xs uppercase tracking-widest">
+<span class="bg-surface-container-lowest px-4 text-outline-variant font-bold">Quick Select</span>
+</div>
+</div>
+<!-- Demo Users List -->
+<div class="space-y-3">
+<!-- User 1 -->
+<div class="group flex items-center justify-between p-4 bg-surface-container-low hover:bg-primary-container/10 rounded-2xl cursor-pointer transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-200 ring-2 ring-white">
+<img alt="Rahul Sharma" class="w-full h-full object-cover" data-alt="Close-up portrait of a young Indian man with a friendly smile, warm studio lighting, professional headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChXJwMZb7xB-igYAfTZJGBSOSjT9tYQXEEBukxKhtTxxOADfmWdMHG3YSlQKBwyOyYX0mk9iPIi47yXpIuVpzrHRUeBBiNK45YkXLrGr7CC3CQtjqnX__b22kaPu8oGTukjLnepAmdWXgGe9nC9tjApg8ewu8uBNv_mXwwuIaQCQ_K116UGg7Xc-HGgU9QIfSudj5DrSRrR__1rCqCF4BKW33b3ghl6X3Kmvpi8Fim8SUj4OTOsNnv3_gs46BiFXHG9BKOytF1yVM"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Rahul Sharma</p>
+<p class="text-xs text-on-surface-variant font-medium">+91 98765 43210</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container opacity-0 group-hover:opacity-100 transition-opacity" data-icon="login">login</span>
+</div>
+<!-- User 2 -->
+<div class="group flex items-center justify-between p-4 bg-surface-container-low hover:bg-primary-container/10 rounded-2xl cursor-pointer transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-200 ring-2 ring-white">
+<img alt="Ananya Verma" class="w-full h-full object-cover" data-alt="Professional headshot of a young Indian woman with dark hair, soft natural lighting, elegant and approachable expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLDkdHviQRjXPBNuKBWxUfX0JQfuxh04npX4Ru11_lRb5xogn-Sn113JYpqMxCe1XF0VBvD1CVeHLQB9TClizclfk9YyppO8536pJm3vVi7GoE0xQLxxmbksnHzK2IBFKBtUBunJL8wrFuJS77HH5DCJTF3d34BlFCxl-g2tGUrT8b2OG9q4a9EpYw9VpmyqQ2z7rcQmGX7udVbHycvuW0pB8QYlvZH0vbN1l_lpMp2NAC_4EAVdIF_KWyyzILPWx4XOcS0j4Vzqw"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Ananya Verma</p>
+<p class="text-xs text-on-surface-variant font-medium">+91 99887 76655</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container opacity-0 group-hover:opacity-100 transition-opacity" data-icon="login">login</span>
+</div>
+<!-- User 3 -->
+<div class="group flex items-center justify-between p-4 bg-surface-container-low hover:bg-primary-container/10 rounded-2xl cursor-pointer transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-200 ring-2 ring-white">
+<img alt="Vikram Singh" class="w-full h-full object-cover" data-alt="Portrait of a mature Indian professional man, clean shaven, confident smile, soft focus office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtpn2yH-_EANPkxHeJeWCXRF9P45TiOIy8TWQ5zSWoMPetIY8B1_wLmUTvmuhBAmi-TBuMdZkxAJ3v5rjSirqJyauN3_qiz0YIUKJv3YkwhbFQW0Y3ARiNR4NearRHwzdqUFEANM5bwwCAHiDcx2NVxBIlvTMEmG4u_bqOVTQcTbRysT-NuCNtYdQ07z186wrw0bguFnpWURAwI2u71ZFYAfuyIowIDc02nlQ4SCs6IXNBhUmDbmSPQWexDOQVOI9c0YspkJOvWCY"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Vikram Singh</p>
+<p class="text-xs text-on-surface-variant font-medium">+91 91234 56789</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container opacity-0 group-hover:opacity-100 transition-opacity" data-icon="login">login</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Help -->
+<p class="text-center text-xs text-on-surface-variant font-medium">
+            New to FlowWallet? <a class="text-primary font-bold hover:underline" href="#">Create an account</a>
+</p>
+</div>
+<!-- AI Decorative Background Element -->
+<div class="fixed -bottom-24 -right-24 w-96 h-96 bg-gradient-to-br from-primary/10 to-tertiary-container/10 rounded-full blur-[100px] -z-10"></div>
+<div class="fixed -top-24 -left-24 w-96 h-96 bg-gradient-to-br from-primary-fixed/5 to-on-primary-fixed-variant/5 rounded-full blur-[100px] -z-10"></div>
+</body></html>

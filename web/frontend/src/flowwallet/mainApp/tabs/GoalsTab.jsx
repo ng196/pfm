@@ -95,7 +95,7 @@ export default function GoalsTab({ data }) {
       }
       setAiResponse(response);
     } catch {
-      setAiResponse("⚠️ Could not reach AI. Is the proxy server running?");
+      setAiResponse("⚠️ Could not reach AI. Ensure backend is running on port 5000 and ZAI_API_KEY is set in backend .env.");
     } finally {
       setAiLoading(false);
     }

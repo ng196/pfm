@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "FlowWallet Mobile",
+    "slug": "flowwallet-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.flowwallet.mobile",
+      "permissions": [
+        "android.permission.READ_SMS",
+        "android.permission.RECEIVE_SMS"
+      ]
+    }
+  }
+}

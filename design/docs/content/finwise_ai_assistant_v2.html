@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FinWise AI Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#dae2fd",
+              "inverse-on-surface": "#eff1f3",
+              "error": "#ba1a1a",
+              "on-secondary-container": "#5c647a",
+              "on-tertiary-container": "#00414d",
+              "tertiary": "#00687a",
+              "primary-container": "#14b8a6",
+              "surface-variant": "#e0e3e5",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#005048",
+              "on-secondary": "#ffffff",
+              "surface-container": "#eceef0",
+              "surface-container-low": "#f2f4f6",
+              "tertiary-fixed": "#acedff",
+              "on-primary-fixed": "#00201c",
+              "on-error": "#ffffff",
+              "inverse-primary": "#4fdbc8",
+              "tertiary-fixed-dim": "#4cd7f6",
+              "surface-tint": "#006b5f",
+              "surface-dim": "#d8dadc",
+              "outline": "#6c7a77",
+              "on-secondary-fixed": "#131b2e",
+              "surface": "#f7f9fb",
+              "primary": "#006b5f",
+              "surface-container-lowest": "#ffffff",
+              "surface-bright": "#f7f9fb",
+              "primary-fixed": "#71f8e4",
+              "background": "#f7f9fb",
+              "on-primary-container": "#00423b",
+              "outline-variant": "#bbcac6",
+              "secondary-fixed-dim": "#bec6e0",
+              "primary-fixed-dim": "#4fdbc8",
+              "on-tertiary-fixed-variant": "#004e5c",
+              "on-background": "#191c1e",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed-variant": "#3f465c",
+              "on-tertiary-fixed": "#001f26",
+              "on-surface-variant": "#3c4947",
+              "surface-container-high": "#e6e8ea",
+              "on-error-container": "#93000a",
+              "tertiary-container": "#00b4d2",
+              "surface-container-highest": "#e0e3e5",
+              "on-surface": "#191c1e",
+              "on-primary": "#ffffff",
+              "secondary": "#565e74",
+              "secondary-container": "#dae2fd",
+              "inverse-surface": "#2d3133"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-pill {
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .ai-bubble {
+        background: rgba(20, 184, 166, 0.08);
+        backdrop-filter: blur(8px);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #bbcac6;
+        border-radius: 10px;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl">
+<div class="flex items-center gap-4">
+<button class="text-teal-600 dark:text-teal-400 hover:opacity-80 transition-opacity active:scale-95 duration-200 ease-in-out">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white font-['Inter']">FlowWallet</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden md:flex items-center gap-6 mr-6">
+<a class="text-teal-600 dark:text-teal-400 font-bold font-['Inter'] font-semibold tracking-tight transition-opacity" href="#">Portfolio</a>
+<a class="text-slate-500 dark:text-slate-400 font-['Inter'] font-semibold tracking-tight hover:opacity-80 transition-opacity" href="#">Insights</a>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a professional man with a friendly expression in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFshptanX6khPnwEvI2te2ptgQluTEPKH7Jv2IJNL_mjvzJ7bNdK9_nUA_9W9ruZpMGUMwSDMK3hCFpR5CcXOKjV9TAz1nIUeovTyDnx_9ygWwD9KmnFACknBe6aBgkJbD5igbhdG4CLAEjLH5XS09PLV2mZiBfFV_1t0dRKmAJ8hTGvB4_G5f-9NE3JGyJhnY2YHXi6tctkUOqxPv60oKpipXNNSjUcbIdDZwQUup7JhOD9UJdZjEOpoIF3Bdp8QeA76GNDLRWQo"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 min-h-screen max-w-5xl mx-auto px-6">
+<!-- Context Header: Goal Advisor -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-[10px] font-['Inter'] uppercase tracking-[0.15em] font-bold">Intelligent Assistant</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface">Financial Concierge</h2>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-lowest p-3 pr-6 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="home_work">home_work</span>
+</div>
+<div>
+<p class="text-[10px] font-['Inter'] uppercase tracking-[0.1em] text-on-surface-variant font-medium">Active Context</p>
+<p class="text-sm font-bold text-on-surface">Saving for Dream Home</p>
+<div class="w-32 h-1 bg-surface-container-high rounded-full mt-2 overflow-hidden">
+<div class="h-full w-2/3 bg-gradient-to-r from-primary to-tertiary-container rounded-none"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Conversation View -->
+<div class="space-y-8 mb-12 custom-scrollbar overflow-y-auto max-h-[530px] pr-2">
+<!-- AI Message -->
+<div class="flex items-start gap-4 max-w-[85%]">
+<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary to-tertiary-container flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-lg" data-icon="flare" style="font-variation-settings: 'FILL' 1;">flare</span>
+</div>
+<div class="ai-bubble p-6 rounded-2xl rounded-tl-none border border-primary/5">
+<p class="text-on-surface leading-relaxed font-medium">Good morning, Alex. Based on your recent spending in the 'Dining Out' category, I've projected you could reach your <span class="text-primary font-bold">Dream Home</span> down payment goal 3 months earlier by adjusting your weekend budget. Would you like to see a simulated savings plan?</p>
+<p class="mt-3 text-[10px] font-medium uppercase tracking-wider text-on-surface-variant opacity-60">Just now</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex flex-row-reverse items-start gap-4 max-w-[85%] ml-auto">
+<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="person">person</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-2xl rounded-tr-none shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/10">
+<p class="text-on-surface leading-relaxed">Yes, please show me the plan. Also, how much did I spend at Starbucks this month compared to last?</p>
+<p class="mt-3 text-[10px] font-medium uppercase tracking-wider text-on-surface-variant opacity-60 text-right">Sent 10:42 AM</p>
+</div>
+</div>
+<!-- AI Message with Insight Card -->
+<div class="flex items-start gap-4 max-w-[85%]">
+<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary to-tertiary-container flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-lg" data-icon="flare" style="font-variation-settings: 'FILL' 1;">flare</span>
+</div>
+<div class="space-y-4 w-full">
+<div class="ai-bubble p-6 rounded-2xl rounded-tl-none border border-primary/5">
+<p class="text-on-surface leading-relaxed font-medium">Your Starbucks spending is actually down by <span class="text-primary font-bold">12%</span> compared to last month! Here is your category breakdown:</p>
+</div>
+<!-- Asymmetric Insight Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-2 md:col-span-1 bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary p-2 bg-primary/5 rounded-lg" data-icon="coffee">coffee</span>
+<span class="text-[10px] font-bold text-primary px-2 py-1 bg-primary/10 rounded-full">-12% vs May</span>
+</div>
+<p class="text-3xl font-bold text-on-surface tracking-tight">$84.50</p>
+<p class="text-xs text-on-surface-variant font-medium mt-1">Total Beverage Spending</p>
+</div>
+<div class="col-span-2 md:col-span-1 bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-tertiary" data-icon="savings">savings</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Potential Early Goal</span>
+</div>
+<p class="text-3xl font-bold text-on-surface tracking-tight">Aug 2025</p>
+<p class="text-xs text-on-surface-variant font-medium mt-1">New Projected Date</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Prompt Chips -->
+<div class="flex flex-wrap gap-3 mb-8 justify-center">
+<button class="glass-pill px-5 py-3 rounded-full border border-primary/20 flex items-center gap-2 hover:bg-primary/5 transition-all group active:scale-95">
+<span class="material-symbols-outlined text-primary text-lg group-hover:scale-110 transition-transform" data-icon="analytics">analytics</span>
+<span class="text-xs font-bold text-on-surface-variant tracking-wide">Detailed Analysis</span>
+</button>
+<button class="glass-pill px-5 py-3 rounded-full border border-primary/20 flex items-center gap-2 hover:bg-primary/5 transition-all group active:scale-95">
+<span class="material-symbols-outlined text-primary text-lg group-hover:scale-110 transition-transform" data-icon="payments">payments</span>
+<span class="text-xs font-bold text-on-surface-variant tracking-wide">Adjust Daily Limit</span>
+</button>
+<button class="glass-pill px-5 py-3 rounded-full border border-primary/20 flex items-center gap-2 hover:bg-primary/5 transition-all group active:scale-95">
+<span class="material-symbols-outlined text-primary text-lg group-hover:scale-110 transition-transform" data-icon="notifications_active">notifications_active</span>
+<span class="text-xs font-bold text-on-surface-variant tracking-wide">Set Alert</span>
+</button>
+</div>
+</main>
+<!-- Input Area Container -->
+<div class="fixed bottom-0 left-0 w-full p-6 bg-gradient-to-t from-background via-background/90 to-transparent">
+<div class="max-w-4xl mx-auto relative flex items-center">
+<div class="w-full bg-surface-container-lowest rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.08)] border border-outline-variant/10 flex items-center pl-6 pr-2 py-2">
+<span class="material-symbols-outlined text-on-surface-variant/40 mr-3" data-icon="attach_file">attach_file</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/40 font-medium" placeholder="Ask FinWise about your wealth..." type="text"/>
+<button class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-tertiary-container text-white flex items-center justify-center shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all active:scale-90 duration-300 ml-2">
+<span class="material-symbols-outlined" data-icon="send" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<!-- Bottom Navigation Space Buffer (Mobile only) -->
+<div class="h-20 md:hidden"></div>
+</div>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl mx-8 mb-8 h-16 rounded-full shadow-[0_20px_40px_rgba(20,184,166,0.12)]">
+<button class="text-slate-400 dark:text-slate-500 p-3 hover:text-teal-500 transition-colors active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</button>
+<button class="text-slate-400 dark:text-slate-500 p-3 hover:text-teal-500 transition-colors active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+</button>
+<button class="bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-300 rounded-full p-3 shadow-inner active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+</button>
+<button class="text-slate-400 dark:text-slate-500 p-3 hover:text-teal-500 transition-colors active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</nav>
+</body></html>

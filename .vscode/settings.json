@@ -2,5 +2,11 @@
     "javascript.autoClosingTags": false,
     "liveServer.settings.port": 5501,
     "python-envs.defaultEnvManager": "ms-python.python:conda",
-    "python-envs.defaultPackageManager": "ms-python.python:conda"
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "chat.tools.terminal.autoApprove": {
+        "/^git -C \"C:\\\\Users\\\\nitin\\\\OneDrive\\\\Documents\\\\GitHub\\\\hackjklu\" remote -v$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
 }

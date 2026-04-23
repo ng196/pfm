@@ -65,7 +65,7 @@ export default function AiTab({ data }) {
         ...prev,
         {
           role: "assistant",
-          content: `⚠️ Could not reach AI. Make sure the proxy server (z.ai.py) is running on port 8787.\n\nError: ${err.message}`,
+          content: `⚠️ Could not reach AI. Make sure backend is running on port 5000 and ZAI_API_KEY is set in backend .env.\n\nError: ${err.message}`,
           actions: [],
         },
       ]);

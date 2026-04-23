@@ -1,0 +1,32 @@
+{
+  "name": "[TODO: marketplace-name]",
+  "interface": {
+    "displayName": "[TODO: Marketplace Display Name]"
+  },
+  "plugins": [
+    {
+      "name": "fantasy-writer-ide",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fantasy-writer-ide"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "caveman",
+      "source": {
+        "source": "local",
+        "path": "./plugins/caveman"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

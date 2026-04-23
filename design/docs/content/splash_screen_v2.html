@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlowWallet - Premium Fintech Experience</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#dae2fd",
+              "inverse-on-surface": "#eff1f3",
+              "error": "#ba1a1a",
+              "on-secondary-container": "#5c647a",
+              "on-tertiary-container": "#00414d",
+              "tertiary": "#00687a",
+              "primary-container": "#14b8a6",
+              "surface-variant": "#e0e3e5",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#005048",
+              "on-secondary": "#ffffff",
+              "surface-container": "#eceef0",
+              "surface-container-low": "#f2f4f6",
+              "tertiary-fixed": "#acedff",
+              "on-primary-fixed": "#00201c",
+              "on-error": "#ffffff",
+              "inverse-primary": "#4fdbc8",
+              "tertiary-fixed-dim": "#4cd7f6",
+              "surface-tint": "#006b5f",
+              "surface-dim": "#d8dadc",
+              "outline": "#6c7a77",
+              "on-secondary-fixed": "#131b2e",
+              "surface": "#f7f9fb",
+              "primary": "#006b5f",
+              "surface-container-lowest": "#ffffff",
+              "surface-bright": "#f7f9fb",
+              "primary-fixed": "#71f8e4",
+              "background": "#f7f9fb",
+              "on-primary-container": "#00423b",
+              "outline-variant": "#bbcac6",
+              "secondary-fixed-dim": "#bec6e0",
+              "primary-fixed-dim": "#4fdbc8",
+              "on-tertiary-fixed-variant": "#004e5c",
+              "on-background": "#191c1e",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed-variant": "#3f465c",
+              "on-tertiary-fixed": "#001f26",
+              "on-surface-variant": "#3c4947",
+              "surface-container-high": "#e6e8ea",
+              "on-error-container": "#93000a",
+              "tertiary-container": "#00b4d2",
+              "surface-container-highest": "#e0e3e5",
+              "on-surface": "#191c1e",
+              "on-primary": "#ffffff",
+              "secondary": "#565e74",
+              "secondary-container": "#dae2fd",
+              "inverse-surface": "#2d3133"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .mesh-gradient {
+            background-color: #f7f9fb;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(20, 184, 166, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(0, 180, 210, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(247, 249, 251, 1) 0px, transparent 50%);
+        }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface overflow-hidden">
+<!-- Ethereal Background Canvas -->
+<div class="fixed inset-0 z-0 mesh-gradient"></div>
+<!-- Main Splash Canvas -->
+<main class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center">
+<!-- Animated Floating Icon Section -->
+<div class="relative mb-12">
+<!-- Glass Glow Base -->
+<div class="absolute inset-0 bg-primary-container/20 blur-3xl rounded-full transform scale-150"></div>
+<!-- Icon Container -->
+<div class="relative glass-morphism w-28 h-28 rounded-xl flex items-center justify-center shadow-[0_20px_50px_rgba(0,107,95,0.1)] border border-white/40">
+<span class="material-symbols-outlined text-5xl text-on-secondary-fixed" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<!-- Subtle Reflection/Highlight -->
+<div class="absolute -top-4 -right-4 w-12 h-12 bg-tertiary-fixed-dim/30 rounded-full blur-xl"></div>
+</div>
+<!-- Typography Cluster -->
+<div class="space-y-4 max-w-md">
+<h1 class="text-5xl md:text-6xl font-headline font-bold tracking-tighter text-on-secondary-fixed">
+                FlowWallet
+            </h1>
+<p class="text-lg md:text-xl font-body font-light tracking-wide text-on-surface-variant opacity-80">
+                Your money, one flow.
+            </p>
+</div>
+<!-- Primary Action Section -->
+<div class="mt-16 w-full max-w-xs">
+<button class="group relative w-full bg-on-secondary-fixed text-surface-container-lowest py-5 rounded-full font-label font-bold text-sm tracking-[0.2em] uppercase transition-all duration-500 hover:shadow-[0_0_30px_rgba(19,27,46,0.25)] active:scale-95">
+<span class="relative z-10">Get Started</span>
+<!-- Subtle Hover Glow -->
+<div class="absolute inset-0 rounded-full bg-primary opacity-0 group-hover:opacity-10 blur-md transition-opacity duration-500"></div>
+</button>
+</div>
+<!-- Aesthetic Footer Hint -->
+<div class="absolute bottom-12 flex flex-col items-center gap-4 opacity-40">
+<div class="w-px h-12 bg-gradient-to-b from-transparent via-on-surface-variant to-transparent"></div>
+<span class="text-[10px] uppercase tracking-[0.3em] font-label">Encrypted &amp; Secure</span>
+</div>
+</main>
+<!-- Decorative Elements (Asymmetric Layout) -->
+<div class="fixed top-20 -left-20 w-64 h-64 bg-primary-container/5 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="fixed bottom-40 -right-20 w-80 h-80 bg-tertiary-container/5 rounded-full blur-[120px] pointer-events-none"></div>
+<!-- Hidden Visual Anchor for System Identity -->
+<div class="hidden">
+<img data-alt="Abstract ethereal background with soft fluid teal and cyan gradients, minimalist and premium aesthetic with high-end digital texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA606vwqeS3k3yVWOEtC19WEc6S8TPljROymCGTOn_jn5nCYEKlSMxLXG67wl3i9HTkjc1dgNvztsaIiyg9gwQhK1ZAHfkow9MoJN56jtY7NsRg7k0CKEJ-gdl3QexYV0jdNTk_6TaHyVB16UUKReaGBTQnz9L9CaA_Wdn8nhJaFcTJQdLNZDdOBVSN-O9ha6tOuemofxu6_PscfhnAsyOcmU7mt07Yjr0DwVJhsERFC9zbstYTtT3YGvuuaCWNigc9KXhkjeq-V68"/>
+</div>
+</body></html>
